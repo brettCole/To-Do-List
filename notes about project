@@ -1,0 +1,5 @@
+List of To-Do Lists
+Each list has show page with the tasks of that List
+models - User / List / Task
+controllers - user / list
+ 
