@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   get '/signup' do
     @title = "Signup"
     if logged_in?
-      redirect '/tasks'
+      redirect '/lists'
     else
       erb :'/users/signup'
     end
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(params)
       if @user.valid? && @user.save
         session[:id] = @user.id
-        redirect '/tasks'
+        redirect '/lists'
       else
         flash[:error] = "Already a User! Please Login!"
         redirect '/login'
@@ -27,24 +27,24 @@ class UsersController < ApplicationController
   get '/login' do
     @title = "Login"
     if !!session[:id]
-      redirect '/tasks'
+      redirect '/lists'
     else
       erb :'/users/login'
     end
   end
 
   post '/login' do
-    @user = User.find(username: params[:username])
+    @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      redirect '/tasks'
+      redirect '/lists'
     else
       flash[:error] = "Username or Password do not Match!"
       redirect '/login'
     end
   end
 
-  get 'logout' do
+  get '/logout' do
     session.clear
     redirect '/login'
   end

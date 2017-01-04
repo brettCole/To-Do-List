@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
+  validates :task, presence: true
   belongs_to :user
   belongs_to :list
-  validates :task, presence: true
 end

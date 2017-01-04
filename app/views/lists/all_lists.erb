@@ -1,0 +1,18 @@
+<h1><%= @user.username %>'s To-Do Lists</h1>
+
+<form method="POST" action="/lists">
+  <input type="text" name="name" placeholder="Name of To-Do List" required /><br />
+  <input type="hidden" name="user_id" value="<%= session[:id] %>">
+  <input type="submit" value="Create List" />
+</form><br />
+
+<% @lists.each do |list| %>
+  <p><a href="/lists/<%= list.id %>"><%= list.name.split.map { |i| i.capitalize }.join(' ') %></a></p>
+  <form method="POST" action="/lists/<%= list.id %>/delete">
+			<input type="hidden" name="_method" value="DELETE" />
+      <input type="hidden" name="<%= list.id %>" value="<%= list.id %>">
+			<input type="submit" value="Delete Review" />
+		</form>
+<% end %>
+
+<h3><a href="/logout">Log Out</a></h3>
