@@ -1,1 +1,20 @@
-<h1><%= @list.name %>'s List</h1>
+<h2><%= @user.username %>'s</h2>
+<h1><%= @list.name %> list</h1>
+
+<form method="POST" action="/lists/<%= @list.id %>">
+  <input type="text" name="task" placeholder="Task for List" required /><br />
+  <input type="hidden" name="user_id" value="<%= session[:id] %>">
+  <input type="submit" value="Create Task" />
+</form><br />
+
+<% @task.each do |item| %>
+  <ul>
+    <form style="display: inline;" method="POST" action="/lists/<%= @list.id %>/tasks/<%= item.id %>/delete">
+      <input type="hidden" name="_method" value="DELETE">
+      <input style="color: red;" type="submit" value="X">
+    </form>
+    <li style="display: inline;"><%= item.task %></li>
+  </ul>
+<% end %>
+
+<a href="/lists">Return to Lists</a>
