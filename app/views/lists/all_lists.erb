@@ -10,7 +10,6 @@
   <p><a href="/lists/<%= list.id %>"><%= list.name.split.map { |i| i.capitalize }.join(' ') %></a></p>
   <form method="POST" action="/lists/<%= list.id %>/delete">
 			<input type="hidden" name="_method" value="DELETE" />
-      <input type="hidden" name="<%= list.id %>" value="<%= list.id %>">
 			<input type="submit" value="Delete Review" />
 		</form>
 <% end %>

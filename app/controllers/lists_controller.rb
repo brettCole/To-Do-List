@@ -41,9 +41,7 @@ class ListsController < ApplicationController
 
   post '/lists/:id' do
     @list = List.find_by_id(params[:id])
-    #@list = @user.lists.find_by_id(params)
     @task = @list.tasks.build(task: params[:task])
-    #@task = Task.new(task: params[:task])
     @task.user = current_user
     if @task.valid? && @task.save
       redirect "/lists/#{@list.id}"

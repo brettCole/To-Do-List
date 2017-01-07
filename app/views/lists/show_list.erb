@@ -3,7 +3,6 @@
 
 <form method="POST" action="/lists/<%= @list.id %>">
   <input type="text" name="task" placeholder="Task for List" required /><br />
-  <input type="hidden" name="user_id" value="<%= session[:id] %>">
   <input type="submit" value="Create Task" />
 </form><br />
 
